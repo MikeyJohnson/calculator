@@ -5,6 +5,28 @@
     padding:20px;
     border: 1px solid black;
     border-radius: 5px;
-    
 
-}
+ }
+ .calc-button{ 
+    width: 70px;
+    height: 70px;
+    margin: 5px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: white;
+    box-shadow: 0 0 5px 0 #000;
+ }
+ #display {
+    width: 90%;
+    height: 50px;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 30px;
+    text-align: right;
+    border: none;
+    border-radius: 5px;
+    background-color:white;
+    box-shadow: 0 0 5px 0 black;
+ }
