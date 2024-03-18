@@ -1,11 +1,11 @@
 const calculator = document.getElementById('calculator');
 let display = document.getElementById("display");
-// calculator.innerHTML = 'calculator'
-display.innerHTML = 5;
+
 // screen
+display.innerHTML = 0;
 
 //button 1-9
-for(let i = 1; i < 10; i++){
+for(let i = 9; i > 0; i--) {
     let button = document.createElement("button");
    button.innerHTML = i;
    button.classList.add("calc-button");
@@ -14,14 +14,34 @@ for(let i = 1; i < 10; i++){
     display.innerHTML += i;
    })
    
-   calculator.appendChild(button);
-   
+   calculator.appendChild(button);  
 }
+
 //operators
+let operators = ["+","-","x","/","."];
+
+operators.forEach((operator) => {
+    let button = document.createElement("button");
+button.innerHTML = operator;
+button.classList.add("calc-button");
+
+button.addEventListener("click", function () {
+    display.innerHTML += operator;
+});
+calculator.appendChild(button);
+});
+
+// clearBtn
+let clearBtn = document.createElement("button");
+clearBtn.innerHTML = "AC";
+clearBtn.classList.add("calc-button");
+
+clearBtn.addEventListener("click",function (){
+    display.innerHTML = 0;
+});
+calculator.appendChild(clearBtn);
+
 // = button
 
 
 // functionality
-let result = 0;
-
-console.log(result);
