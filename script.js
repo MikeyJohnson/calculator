@@ -1,47 +1,53 @@
-const calculator = document.getElementById('calculator');
-let display = document.getElementById("display");
+let currentNumber = '';
+let operator = '';
+let previousNumber = '';
 
-// screen
-display.innerHTML = 0;
-
-//button 1-9
-for(let i = 9; i > 0; i--) {
-    let button = document.createElement("button");
-   button.innerHTML = i;
-   button.classList.add("calc-button");
-
-   button.addEventListener("click",function(){
-    display.innerHTML += i;
-   })
-   
-   calculator.appendChild(button);  
+function appendNumber(number) {
+  currentNumber += number;
+  updateDisplay(currentNumber);
 }
 
-//operators
-let operators = ["+","-","x","/","."];
+function appendOperator(op) {
+  if (operator !== '') {
+    calculate();
+  }
+  operator = op;
+  previousNumber = currentNumber;
+  currentNumber = '';
+}
 
-operators.forEach((operator) => {
-    let button = document.createElement("button");
-button.innerHTML = operator;
-button.classList.add("calc-button");
+function calculate() {
+  let result;
+  const num1 = parseFloat(previousNumber);
+  const num2 = parseFloat(currentNumber);
+  switch (operator) {
+    case '+':
+      result = num1 + num2;
+      break;
+    case '-':
+      result = num1 - num2;
+      break;
+    case '*':
+      result = num1 * num2;
+      break;
+    case '/':
+      result = num1 / num2;
+      break;
+    default:
+      return;
+  }
+  updateDisplay(result.toString());
+  currentNumber = result.toString();
+  operator = '';
+}
 
-button.addEventListener("click", function () {
-    display.innerHTML += operator;
-});
-calculator.appendChild(button);
-});
+function clearDisplay() {
+  currentNumber = '';
+  operator = '';
+  previousNumber = '';
+  updateDisplay('');
+}
 
-// clearBtn
-let clearBtn = document.createElement("button");
-clearBtn.innerHTML = "AC";
-clearBtn.classList.add("calc-button");
-
-clearBtn.addEventListener("click",function (){
-    display.innerHTML = 0;
-});
-calculator.appendChild(clearBtn);
-
-// = button
-
-
-// functionality
+function updateDisplay(value) {
+  document.getElementById('display').value = value;
+}
